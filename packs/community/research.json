@@ -1,0 +1,15 @@
+{
+  "name": "Research Workflow",
+  "icon": "🔬",
+  "description": "Speed up research with shortcuts for searching, copying references, and managing research tabs.",
+  "author": "shortkeys",
+  "shortcuts": [
+    { "key": "alt+g", "action": "searchgoogle", "label": "Search Google for selection" },
+    { "key": "alt+w", "action": "searchwikipedia", "label": "Search Wikipedia for selection" },
+    { "key": "alt+shift+c", "action": "copytitleurlmarkdown", "label": "Copy as markdown link" },
+    { "key": "alt+shift+u", "action": "copyurl", "label": "Copy current URL" },
+    { "key": "alt+shift+t", "action": "copytitleurl", "label": "Copy title and URL" },
+    { "key": "alt+shift+n", "action": "newtabright", "label": "New tab to the right" },
+    { "key": "alt+shift+x", "action": "clonetab", "label": "Duplicate tab" }
+  ]
+}

@@ -1,0 +1,742 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+
+<BaseLayout
+  title="Welcome to Shortkeys v5"
+  description="Shortkeys v5 — the biggest update ever. 100+ actions, command palette, shortcut packs, cloud sync, groups, dark mode, Firefox support, and much more."
+  currentPage="welcome"
+>
+  <style>
+    /* Hero */
+    .hero {
+      padding: 100px 24px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(circle at top center, #ffffff 0%, var(--light) 100%);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 72px;
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+      color: var(--darker);
+    }
+
+    .hero-subtitle {
+      font-size: 20px;
+      color: var(--gray);
+      max-width: 640px;
+      margin: 0 auto 48px;
+      line-height: 1.6;
+    }
+
+    .hero-downloads {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Stats */
+    .stats-section {
+      padding: 64px 24px;
+      background: var(--darker);
+      color: var(--white);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 56px;
+      font-weight: 900;
+      color: var(--blue);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 18px;
+      color: var(--gray-light);
+      font-weight: 500;
+    }
+
+    /* Secondary Features */
+    .secondary-features-header {
+      text-align: center;
+      margin: 80px auto 48px;
+      max-width: 800px;
+    }
+
+    .secondary-features-header h3 {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .secondary-features-header p {
+      font-size: 18px;
+      color: var(--gray);
+    }
+
+    .compact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .compact-feat {
+      display: flex;
+      gap: 16px;
+      padding: 20px;
+      background: var(--white);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .compact-feat:hover {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+      border-color: var(--blue);
+    }
+
+    .compact-icon {
+      font-size: 24px;
+      color: var(--blue);
+      background: rgba(67, 97, 238, 0.1);
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .compact-feat h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--dark);
+    }
+
+    .compact-feat p {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* Migration */
+    .migration-section {
+      padding: 64px 24px;
+      background: var(--green-light);
+      border-top: 1px solid #a7f3d0;
+      border-bottom: 1px solid #a7f3d0;
+      text-align: center;
+    }
+
+    .migration-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .migration-icon {
+      font-size: 48px;
+      color: var(--green);
+      margin-bottom: 16px;
+      line-height: 1;
+    }
+
+    .migration-section h2 {
+      font-size: 32px;
+      font-weight: 800;
+      color: #065f46;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .migration-section p {
+      color: #047857;
+      font-size: 18px;
+    }
+
+    /* Review CTA Section */
+    .review-section {
+      text-align: center;
+      padding: 80px 24px;
+      background: var(--white);
+      border-top: 1px solid var(--border);
+    }
+
+    .review-inner {
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .review-stars {
+      font-size: 32px;
+      margin-bottom: 16px;
+      letter-spacing: 4px;
+    }
+
+    .review-section h2 {
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .review-section p {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--gray);
+      margin-bottom: 32px;
+    }
+
+    .btn-review {
+      background: var(--accent);
+      color: var(--white);
+      box-shadow: 0 8px 16px rgba(245, 158, 11, 0.2);
+    }
+
+    .btn-review:hover {
+      background: #d97706;
+      transform: translateY(-2px);
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      text-align: center;
+      padding: 100px 24px;
+      background: var(--white);
+    }
+
+    .cta-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta-inner h2 {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      letter-spacing: -1px;
+    }
+
+    .cta-inner p {
+      font-size: 20px;
+      color: var(--gray);
+      margin-bottom: 40px;
+    }
+
+    .cta-hint {
+      margin-top: 24px !important;
+      font-size: 14px !important;
+      color: var(--gray-light) !important;
+    }
+
+    .cta-hint code {
+      background: var(--light);
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-family: 'SF Mono', monospace;
+      font-size: 13px;
+      color: var(--dark);
+      border: 1px solid var(--border);
+    }
+
+    /* Hero Screenshot */
+    .hero-screenshot {
+      max-width: 960px;
+      margin: 64px auto 0;
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    }
+
+    .hero-screenshot .browser-bar {
+      background: #f1f3f4;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-screenshot .browser-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .hero-screenshot .browser-dots span {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ddd;
+    }
+
+    .hero-screenshot .browser-dots span:nth-child(1) { background: #ff5f57; }
+    .hero-screenshot .browser-dots span:nth-child(2) { background: #febc2e; }
+    .hero-screenshot .browser-dots span:nth-child(3) { background: #28c840; }
+
+    .hero-screenshot .browser-url {
+      flex: 1;
+      background: var(--white);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 12px;
+      color: var(--gray);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    .hero-screenshot img {
+      width: 100%;
+      display: block;
+    }
+
+    /* Feature Screenshots */
+    .feature-screenshots {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      max-width: 1200px;
+      margin: 64px auto;
+      padding: 0 24px;
+    }
+
+    .feature-shot {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    }
+
+    .feature-shot img {
+      width: 100%;
+      display: block;
+    }
+
+    .feature-shot-label {
+      padding: 12px 16px;
+      background: var(--white);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--dark);
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 900px) {
+      .stats-grid { grid-template-columns: 1fr; gap: 24px; }
+      .hero h1 { font-size: 48px; }
+      .compact-grid { grid-template-columns: 1fr; }
+      .feature-screenshots { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="pulse-dot"></span> VERSION 5.0
+      </div>
+      <h1>The <span class="text-blue">biggest update</span> ever.</h1>
+      <p class="hero-subtitle">Shortkeys v5 is a complete rewrite — faster, more powerful, and packed with features you've been asking for.</p>
+
+      <div class="hero-downloads">
+        <a href="chrome-extension://logpjaacgmcbpdkdchjiaagddngobkck/options.html" class="btn btn-primary">
+          <i class="mdi mdi-cog"></i> Open Shortkeys Settings
+        </a>
+      </div>
+
+      <div class="hero-screenshot">
+        <div class="browser-bar">
+          <div class="browser-dots"><span></span><span></span><span></span></div>
+          <div class="browser-url">chrome-extension://shortkeys/options.html</div>
+        </div>
+        <img src="/images/screenshot-hero.png" alt="Shortkeys v5 options page showing organized keyboard shortcuts" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-num">100+</div>
+        <div class="stat-label">Built-in Actions</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">40+</div>
+        <div class="stat-label">New Features</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Rewritten &amp; Optimized</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section bg-light" id="features">
+    <div class="section-header">
+      <h2>Everything that's new</h2>
+      <p>Here's what we've been working on. Every feature was the result of user feedback.</p>
+    </div>
+
+    <div class="bento-grid">
+      <div class="bento-item">
+        <div class="bento-icon"><i class="mdi mdi-playlist-play"></i></div>
+        <h3>Macros &amp; chaining</h3>
+        <p>Chain multiple actions into a single shortcut. Open a tab, scroll down, and click — all from one key combo. Add delays between steps for precise automation.</p>
+      </div>
+
+      <div class="bento-item">
+        <div class="bento-icon"><i class="mdi mdi-magnify"></i></div>
+        <h3>Command Palette</h3>
+        <p>Click the extension icon for an instant searchable list of all your shortcuts. Navigate with arrows, trigger with Enter.</p>
+      </div>
+
+      <div class="bento-item">
+        <div class="bento-icon"><i class="mdi mdi-package-variant-closed"></i></div>
+        <h3>Shortcut Packs</h3>
+        <p>One-click install curated collections — Vim, Emacs, YouTube, Tab Manager, and more. Customize or remove anytime.</p>
+      </div>
+
+      <div class="bento-item">
+        <div class="bento-icon"><i class="mdi mdi-cloud-sync"></i></div>
+        <h3>Cloud Sync</h3>
+        <p>Shortcuts automatically sync across all your Chrome instances via your Google account. No extra account needed.</p>
+      </div>
+
+      <div class="bento-item">
+        <div class="bento-icon"><i class="mdi mdi-alert-circle-outline"></i></div>
+        <h3>Conflict Detection</h3>
+        <p>Warns when your shortcuts conflict with browser defaults or duplicates. Platform-aware — knows Mac vs Windows shortcuts.</p>
+      </div>
+
+      <div class="bento-item">
+        <div class="bento-icon"><i class="mdi mdi-folder-outline"></i></div>
+        <h3>Shortcut Groups</h3>
+        <p>Organize into collapsible groups. Enable/disable, rename, or delete entire groups at once. Packs import as groups.</p>
+      </div>
+
+      <div class="bento-item">
+        <div class="bento-icon"><i class="mdi mdi-code-braces"></i></div>
+        <h3>Custom JavaScript</h3>
+        <p>Run any JavaScript with a keyboard shortcut. Full syntax-highlighted editor with autocomplete.</p>
+      </div>
+
+      <div class="bento-item">
+        <div class="bento-icon"><i class="mdi mdi-record-circle-outline"></i></div>
+        <h3>Shortcut Recorder</h3>
+        <p>Click Record and press your keys. Supports multi-key sequences like Vim's <kbd>g</kbd> <kbd>g</kbd>. No more guessing key names.</p>
+      </div>
+
+      <div class="bento-item">
+        <div class="bento-icon"><i class="mdi mdi-chart-line"></i></div>
+        <h3>Usage analytics</h3>
+        <p>Track how often you use each shortcut. See your most-used actions and discover shortcuts you've forgotten about.</p>
+      </div>
+
+    </div>
+
+    <div class="feature-screenshots">
+      <div class="feature-shot">
+        <img src="/images/screenshot-macros.png" alt="Macro builder showing chained action steps" />
+        <div class="feature-shot-label">Macros: chain multiple actions into one shortcut</div>
+      </div>
+      <div class="feature-shot">
+        <img src="/images/screenshot-custom-js.png" alt="CodeMirror editor with custom JavaScript" />
+        <div class="feature-shot-label">Custom JavaScript with syntax-highlighted editor</div>
+      </div>
+      <div class="feature-shot">
+        <img src="/images/screenshot-hero.png" alt="Options page in light mode" />
+        <div class="feature-shot-label">Clean, organized shortcut management</div>
+      </div>
+      <div class="feature-shot">
+        <img src="/images/screenshot-dark-mode.png" alt="Options page in dark mode" />
+        <div class="feature-shot-label">Full dark mode support</div>
+      </div>
+    </div>
+
+    <div class="secondary-features-header">
+      <h3>Plus 50+ more improvements</h3>
+      <p>Macros, usage analytics, reader mode, dark mode, QR codes, picture-in-picture, video speed controls, tab sorting, search YouTube/Wikipedia/GitHub, and much more.</p>
+    </div>
+
+    <div class="compact-grid">
+      <div class="compact-feat">
+        <div class="compact-icon"><i class="mdi mdi-weather-night"></i></div>
+        <div>
+          <h4>Dark mode</h4>
+          <p>Settings page follows system preference, plus a one-key dark mode action for any website.</p>
+        </div>
+      </div>
+      <div class="compact-feat">
+        <div class="compact-icon"><i class="mdi mdi-link-variant"></i></div>
+        <div>
+          <h4>Share via link</h4>
+          <p>Generate a shareable URL for any shortcut or group. Anyone with Shortkeys can import it with one click.</p>
+        </div>
+      </div>
+      <div class="compact-feat">
+        <div class="compact-icon"><i class="mdi mdi-refresh"></i></div>
+        <div>
+          <h4>Live reload</h4>
+          <p>Save your shortcuts and they take effect immediately in all open tabs. No more refreshing every page.</p>
+        </div>
+      </div>
+      <div class="compact-feat">
+        <div class="compact-icon"><i class="mdi mdi-firefox"></i></div>
+        <div>
+          <h4>Firefox support</h4>
+          <p>Shortkeys now works on Firefox. Same features, same shortcuts, same sync — across browsers.</p>
+        </div>
+      </div>
+      <div class="compact-feat">
+        <div class="compact-icon"><i class="mdi mdi-play-circle-outline"></i></div>
+        <div>
+          <h4>Video controls</h4>
+          <p>Play/pause, speed up/down, skip forward/back, mute, fullscreen — control any video on any site.</p>
+        </div>
+      </div>
+      <div class="compact-feat">
+        <div class="compact-icon"><i class="mdi mdi-book-open-page-variant"></i></div>
+        <div>
+          <h4>Reader mode</h4>
+          <p>Strip ads and clutter from any page with one keypress. Just the content, beautifully formatted.</p>
+        </div>
+      </div>
+      <div class="compact-feat">
+        <div class="compact-icon"><i class="mdi mdi-content-copy"></i></div>
+        <div>
+          <h4>Smart copy</h4>
+          <p>Copy page title, URL, or both as a markdown link. Copy all links on a page. Extract email addresses. Export tables as CSV.</p>
+        </div>
+      </div>
+      <div class="compact-feat">
+        <div class="compact-icon"><i class="mdi mdi-filter-variant"></i></div>
+        <div>
+          <h4>Search &amp; filter</h4>
+          <p>Find any shortcut instantly by typing in the filter bar. Search by label, key, or action name.</p>
+        </div>
+      </div>
+      <div class="compact-feat">
+        <div class="compact-icon"><i class="mdi mdi-toggle-switch-outline"></i></div>
+        <div>
+          <h4>Enable/disable toggle</h4>
+          <p>Temporarily disable any shortcut or entire group without deleting it. One click to toggle.</p>
+        </div>
+      </div>
+      <div class="compact-feat">
+        <div class="compact-icon"><i class="mdi mdi-drag-horizontal-variant"></i></div>
+        <div>
+          <h4>Drag to reorder</h4>
+          <p>Drag shortcuts to reorder within or between groups. Your order is saved.</p>
+        </div>
+      </div>
+      <div class="compact-feat">
+        <div class="compact-icon"><i class="mdi mdi-chart-bar"></i></div>
+        <div>
+          <h4>Stats bar</h4>
+          <p>See your total shortcuts, disabled count, and conflict count at a glance.</p>
+        </div>
+      </div>
+      <div class="compact-feat">
+        <div class="compact-icon"><i class="mdi mdi-keyboard-outline"></i></div>
+        <div>
+          <h4>Cheat sheet overlay</h4>
+          <p>Press a key to see all your active shortcuts overlaid on the current page. Press Escape to dismiss.</p>
+        </div>
+      </div>
+      <div class="compact-feat">
+        <div class="compact-icon"><i class="mdi mdi-text-box-edit-outline"></i></div>
+        <div>
+          <h4>Insert text action</h4>
+          <p>Type configured text into the focused field with a shortcut. Great for email templates, code snippets, signatures.</p>
+        </div>
+      </div>
+      <div class="compact-feat">
+        <div class="compact-icon"><i class="mdi mdi-bookmark-outline"></i></div>
+        <div>
+          <h4>Toggle bookmark</h4>
+          <p>Add or remove the current page from your bookmarks with a single keypress.</p>
+        </div>
+      </div>
+      <div class="compact-feat">
+        <div class="compact-icon"><i class="mdi mdi-tab"></i></div>
+        <div>
+          <h4>Tab superpowers</h4>
+          <p>Close duplicates, sort alphabetically, suspend inactive tabs, group/ungroup, jump to audible tab, new tab to the right.</p>
+        </div>
+      </div>
+      <div class="compact-feat">
+        <div class="compact-icon"><i class="mdi mdi-incognito"></i></div>
+        <div>
+          <h4>Open in incognito</h4>
+          <p>Open the current page in a private window with one key. Quick, no clicking through menus.</p>
+        </div>
+      </div>
+      <div class="compact-feat">
+        <div class="compact-icon"><i class="mdi mdi-qrcode"></i></div>
+        <div>
+          <h4>QR code generator</h4>
+          <p>Generate a QR code for the current page URL, displayed as a floating overlay you can scan from your phone.</p>
+        </div>
+      </div>
+      <div class="compact-feat">
+        <div class="compact-icon"><i class="mdi mdi-wrench-outline"></i></div>
+        <div>
+          <h4>Greasyfork import</h4>
+          <p>Paste a Greasyfork or OpenUserJS URL and bind any userscript to a keyboard shortcut. No other extensions needed.</p>
+        </div>
+      </div>
+      <div class="compact-feat">
+        <div class="compact-icon"><i class="mdi mdi-code-tags"></i></div>
+        <div>
+          <h4>Developer tools</h4>
+          <p>Show layout grid, clear site storage, performance metrics, pretty-print JSON, log all events — built right in.</p>
+        </div>
+      </div>
+      <div class="compact-feat">
+        <div class="compact-icon"><i class="mdi mdi-web"></i></div>
+        <div>
+          <h4>Per-site activation</h4>
+          <p>Restrict shortcut groups to specific websites. Your GitHub shortcuts only fire on GitHub, YouTube shortcuts only on YouTube.</p>
+        </div>
+      </div>
+      <div class="compact-feat">
+        <div class="compact-icon"><i class="mdi mdi-plus-circle-outline"></i></div>
+        <div>
+          <h4>Quick-add shortcut</h4>
+          <p>Add a new shortcut right from the command palette popup. Pick an action and record your keys without opening settings.</p>
+        </div>
+      </div>
+      <div class="compact-feat">
+        <div class="compact-icon"><i class="mdi mdi-rocket-launch-outline"></i></div>
+        <div>
+          <h4>Getting started guide</h4>
+          <p>New users see a friendly welcome with quick-start options — create a shortcut, browse packs, or import existing shortcuts.</p>
+        </div>
+      </div>
+      <div class="compact-feat">
+        <div class="compact-icon"><i class="mdi mdi-check-circle-outline"></i></div>
+        <div>
+          <h4>Action feedback toasts</h4>
+          <p>Subtle confirmations when copying, sorting, or toggling — so you always know your shortcut worked.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Built-in Actions -->
+  <section class="section bg-white" id="actions">
+    <div class="section-header">
+      <h2>100+ Built-in Actions</h2>
+      <p>Every action you can assign to a keyboard shortcut, organized by category.</p>
+    </div>
+    <div class="actions-accordion" id="actions-accordion">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
+  <!-- Migration -->
+  <section class="migration-section">
+    <div class="migration-inner">
+      <div class="migration-icon"><i class="mdi mdi-check-decagram"></i></div>
+      <h2>Your shortcuts are safe</h2>
+      <p>All your existing shortcuts were automatically migrated. Everything works just like before — plus everything above.</p>
+    </div>
+  </section>
+
+  <!-- Review CTA -->
+  <section class="review-section">
+    <div class="review-inner">
+      <div class="review-stars">⭐⭐⭐⭐⭐</div>
+      <h2>Help us out?</h2>
+      <p>Most of our Chrome Web Store reviews come from people reporting problems. If Shortkeys has been useful to you, a quick positive review would really help balance things out and help other people discover the extension.</p>
+      <a href="https://chrome.google.com/webstore/detail/shortkeys-custom-keyboard/logpjaacgmcbpdkdchjiaagddngobkck/reviews" target="_blank" class="btn btn-review">
+        <i class="mdi mdi-star"></i> Leave a review
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <h2>Ready to explore?</h2>
+      <p>Open settings to browse packs, try the new features, and customize your shortcuts.</p>
+      <a href="chrome-extension://logpjaacgmcbpdkdchjiaagddngobkck/options.html" class="btn btn-primary">
+        <i class="mdi mdi-cog"></i> Open Shortkeys Settings
+      </a>
+      <p class="cta-hint">Or right-click the Shortkeys icon &rarr; <code>Options</code></p>
+    </div>
+  </section>
+
+  <script is:inline>
+    const actionData = {
+      'Scrolling': ['Scroll to top','Scroll to bottom','Scroll down','Scroll down more','Page down','Scroll up','Scroll up more','Page up','Scroll right','Scroll right more','Scroll left','Scroll left more'],
+      'Navigation': ['Go back','Go forward','Reload page','Hard reload','Copy URL','Copy page title','Copy title and URL','Copy as markdown link','Open URL from clipboard','Open clipboard URL in new tab','Navigate to specific URL','Open settings','Open extensions','Open keyboard shortcuts','Search Google','Search YouTube','Search Wikipedia','Search GitHub'],
+      'Tabs': ['New tab','New tab to right','Close tab','Close other tabs','Close left tabs','Close right tabs','Close duplicates','Duplicate tab','Move to new window','Reopen closed tab','Next tab','Previous tab','First tab','Last tab','Last used tab','Jump to audible tab','Jump by URL','Jump by title','Jump by index','Pin/unpin','Mute/unmute','Move left','Move right','Move to first','Move to last','Sort alphabetically','Suspend tab','Add to group','Remove from group'],
+      'Windows': ['New window','New private window','Close window','Toggle fullscreen'],
+      'Zoom': ['Zoom in','Zoom out','Reset zoom'],
+      'Bookmarks': ['Open bookmark','Open in new tab','Open in background tab','Open in bg tab and close','Toggle bookmark'],
+      'Video Controls': ['Play/pause','Mute/unmute','Toggle fullscreen','Speed up','Slow down','Reset speed','Skip forward 10s','Skip back 10s'],
+      'Page Scripts': ['Dark mode','Reader mode','Hide sticky banners','Bigger text','Highlight links','Make page editable','Copy all links','Word count','Extract emails','Table to CSV','QR code','Remove images','Show image sizes','Page outline','Reading progress bar','Layout grid','Clear storage','Performance metrics','Log events','Pretty-print JSON','Picture-in-picture','Video speed 2x','List image URLs','Show audio volume'],
+      'Utilities': ['Run JavaScript','Show latest download','Clear downloads','View source','Disable shortcut','Trigger another shortcut','Insert text','Print page','Open app','Open in incognito','Capture screenshot','Cheat sheet overlay'],
+    };
+
+    const container = document.getElementById('actions-accordion');
+    for (const [cat, items] of Object.entries(actionData)) {
+      const categoryDiv = document.createElement('div');
+      categoryDiv.className = 'action-category';
+
+      const header = document.createElement('button');
+      header.className = 'action-category-header';
+      header.onclick = () => toggleCategory(header);
+      header.innerHTML = `
+        <span>${cat} <span class="action-count">${items.length} actions</span></span>
+        <i class="mdi mdi-chevron-down action-chevron"></i>
+      `;
+
+      const list = document.createElement('div');
+      list.className = 'action-list';
+      list.hidden = true;
+      list.innerHTML = items.map(i => `<div class="action-item">${i}</div>`).join('');
+
+      categoryDiv.appendChild(header);
+      categoryDiv.appendChild(list);
+      container.appendChild(categoryDiv);
+    }
+
+    function toggleCategory(btn) {
+      const category = btn.closest('.action-category');
+      const list = category.querySelector('.action-list');
+      const isOpen = category.classList.toggle('open');
+      list.hidden = !isOpen;
+    }
+  </script>
+</BaseLayout>
